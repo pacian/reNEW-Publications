@@ -8,40 +8,56 @@ This project harvests publications for the **Novo Nordisk Foundation Center for 
 
 renew-publications/
 ├── etl/
-│ ├── europepmc.py
-│ ├── import_csv.py
-│ ├── export_csv.py
-│ ├── generate_html.py
-│ └── generate_html.backup*.py
+│ ├── europepmc.py # Fetch data from EuropePMC
+│ ├── import_csv.py # Import data from Excel/CSV
+│ ├── export_csv.py # Export processed data to CSV
+│ ├── generate_html.py # Generate final HTML output
+│ └── generate_html.backup*.py # Backup versions of the HTML generator
 ├── output/
-│ ├── publications.json
-│ ├── publications.csv
-│ ├── output.html
-│ └── output.backup*.html
+│ ├── publications.json # Combined publication data (JSON)
+│ ├── publications.csv # Exported CSV of publication data
+│ ├── output.html # Human-readable HTML output
+│ └── output.backup*.html # Backup versions of HTML output
 ├── assets/
-│ ├── logo.png
-│ └── badges/
-├── run_pipeline.py
-├── sw.js
-├── venv/
-└── reNEW_PUB.xlsx
-
-
-
-## 🚀 Key Features
-- EuropePMC and Excel harvesting
-- Responsive HTML output
-- Year and source filters
-- Keyword search and reset button
-- Column toggle and theme switcher
-- CSV export and upload (future)
-- Year group headers
-- Source badges
+│ ├── logo.png # reNEW logo for branding
+│ └── badges/ # Optional badge icons (sources)
+├── run_pipeline.py # Master ETL runner script
+├── sw.js # Service worker (offline support)
+├── venv/ # Python virtual environment directory
+└── reNEW_PUB.xlsx # Manually provided Excel data file
 
 ---
 
-## 🔗 Access the Viewer
-[https://publication.renew-platforms.dk](https://publication.renew-platforms.dk)
+## 🚀 Key Features
+- Multi-source publication harvesting (EuropePMC + Excel)
+- Responsive HTML output with filtering and search
+- Column visibility toggle and dark/light theme switch
+- CSV export and placeholder for CSV upload
+- Year group headers for publication clarity
+- Source badges for visual cues
+- Backup scripts and outputs for safety
+
+---
+
+## 📌 Usage Instructions
+```bash
+# Clone the repository
+git clone https://github.com/pacian/reNEW-Publications.git
+cd reNEW-Publications
+
+# Setup Python virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Run ETL scripts
+python etl/import_csv.py
+python etl/export_csv.py
+python etl/generate_html.py
+
+# Deploy output
+sudo cp output/output.html /var/www/renew-publications/index.html
+sudo cp output/publications.csv /var/www/renew-publications/publications.csv
 
 ---
 
