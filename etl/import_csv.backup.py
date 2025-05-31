@@ -3,9 +3,9 @@ import json
 import pandas as pd
 from datetime import datetime
 
+# === CONFIG ===
 EXCEL_FILE = "/root/renew-publications/reNEW_PUB.xlsx"
 JSON_FILE = "output/publications.json"
-SKIP_LOG = "output/skipped_entries.json"
 
 def normalize_excel_row(row):
     def safe_str(value):
@@ -55,28 +55,20 @@ def main():
     existing = load_existing()
 
     df = pd.read_excel(EXCEL_FILE)
-    excel_data = []
-    skipped = []
+    excel_data = [
+        normalize_excel_row(row)
+        for _, row in df.iterrows()
+        if pd.notna(row.get("Title of the contribution in original language"))
+    ]
 
-    for _, row in df.iterrows():
-        norm = normalize_excel_row(row)
-        if norm["title"] and norm["date"]:
-            excel_data.append(norm)
-        else:
-            skipped.append(norm)
-
-    print(f"🧹 Normalized {len(excel_data)} Excel records, Skipped: {len(skipped)}")
+    print(f"🧹 Normalized {len(excel_data)} Excel records")
 
     merged = deduplicate(existing + excel_data)
 
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(merged, f, indent=2, ensure_ascii=False)
 
-    with open(SKIP_LOG, "w", encoding="utf-8") as f:
-        json.dump(skipped, f, indent=2, ensure_ascii=False)
-
     print(f"✅ Imported {len(excel_data)} Excel entries, merged total: {len(merged)}")
-    print(f"⚠️ Skipped {len(skipped)} entries (see output/skipped_entries.json)")
 
 if __name__ == "__main__":
     main()
