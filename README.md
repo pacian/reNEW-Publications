@@ -4,30 +4,6 @@ This project harvests publications for the **Novo Nordisk Foundation Center for 
 
 ---
 
-## 📁 Project Structure
-
-renew-publications/
-├── etl/
-│ ├── europepmc.py # Fetch data from EuropePMC
-│ ├── import_csv.py # Import data from Excel/CSV
-│ ├── export_csv.py # Export processed data to CSV
-│ ├── generate_html.py # Generate final HTML output
-│ └── generate_html.backup*.py # Backup versions of the HTML generator
-├── output/
-│ ├── publications.json # Combined publication data (JSON)
-│ ├── publications.csv # Exported CSV of publication data
-│ ├── output.html # Human-readable HTML output
-│ └── output.backup*.html # Backup versions of HTML output
-├── assets/
-│ ├── logo.png # reNEW logo for branding
-│ └── badges/ # Optional badge icons (sources)
-├── run_pipeline.py # Master ETL runner script
-├── sw.js # Service worker (offline support)
-├── venv/ # Python virtual environment directory
-└── reNEW_PUB.xlsx # Manually provided Excel data file
-
----
-
 ## 🚀 Key Features
 - Multi-source publication harvesting (EuropePMC + Excel)
 - Responsive HTML output with filtering and search
