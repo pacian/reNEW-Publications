@@ -54,7 +54,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-## 🔁 Full Automation
+# Full Automation
 Run the entire ETL pipeline with:
 ```bash
 python run_pipeline.py
