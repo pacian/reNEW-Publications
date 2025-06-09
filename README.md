@@ -13,8 +13,6 @@ This project harvests publications for the **Novo Nordisk Foundation Center for 
 - Source badges for visual cues
 - Backup scripts and outputs for safety
 
----
-
 ## 📌 Usage Instructions
 ```bash
 # Clone the repository
@@ -35,6 +33,5 @@ python etl/generate_html.py
 sudo cp output/output.html /var/www/renew-publications/index.html
 sudo cp output/publications.csv /var/www/renew-publications/publications.csv
 
----
 
-© Novo Nordisk Foundation Center for Stem Cell Medicine – reNEW Copenhagen
+© 2025 Novo Nordisk Foundation Center for Stem Cell Medicine – reNEW Copenhagen
