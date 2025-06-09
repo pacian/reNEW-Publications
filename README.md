@@ -1,6 +1,6 @@
-# reNEW Publications – Copenhagen Node
+# reNEW Publications Registry – Copenhagen Node
 
-This project harvests publications for the **Novo Nordisk Foundation Center for Stem Cell Medicine – reNEW**, formats them into a human-readable HTML publication viewer, and supports multi-source data curation (EuropePMC, Excel).
+This project harvests publications for the **Novo Nordisk Foundation Center for Stem Cell Medicine – reNEW Copenhagen**, formats them into a human-readable HTML publication viewer, and supports multi-source data curation (EuropePMC, Excel).
 
 ---
 
@@ -54,7 +54,9 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Run full ETL pipeline
+## 🔁 Full Automation
+Run the entire ETL pipeline with:
+```bash
 python run_pipeline.py
 
 # Or run components manually
