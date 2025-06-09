@@ -1,9 +1,15 @@
-#!/usr/bin/env python3
-
-import subprocess
+# run_pipeline.py
 import os
 import sys
+import subprocess
 from pathlib import Path
+import shutil
+
+# Direct function imports
+from etl.import_csv import import_from_excel
+from etl.export_csv import export_to_csv
+from etl.generate_html import generate_html
+from etl.europepmc import fetch_publications
 
 def run_script(script_path):
     print(f"🔄 Running: {script_path}")
@@ -21,33 +27,41 @@ def main():
 
     print("🚀 Starting reNEW publication pipeline...")
 
-    # Step 1: Import CSV (Excel converted)
-    run_script(str(etl_dir / "import_csv.py"))
+    # Step 1: Import CSV (Excel)
+    print("📥 Importing Excel...")
+    import_from_excel()
 
     # Step 2: Import OpenAlex
     run_script(str(etl_dir / "import_openalex.py"))
 
-    # Step 3: Export to CSV
-    run_script(str(etl_dir / "export_csv.py"))
+    # Step 3: Fetch from EuropePMC
+    print("🔍 Fetching from EuropePMC...")
+    fetch_publications()
 
-    # Step 4: Generate HTML
-    run_script(str(etl_dir / "generate_html.py"))
+    # Step 4: Export combined data to CSV
+    print("📤 Exporting to CSV...")
+    export_to_csv()
 
-    # Step 5: Deploy to web server
+    # Step 5: Generate HTML
+    print("🧾 Generating HTML...")
+    generate_html()
+
+    # Step 6: Deploy to web root
     print("📂 Deploying output to /var/www/renew-publications")
+    os.makedirs(web_root, exist_ok=True)
+
     output_html = output_dir / "output.html"
     output_csv = output_dir / "publications.csv"
 
     if not output_html.exists() or not output_csv.exists():
-        print("❌ Output files not found. Make sure all ETL steps completed successfully.")
+        print("❌ Output files missing. ETL step may have failed.")
         sys.exit(1)
 
-    os.makedirs(web_root, exist_ok=True)
-    subprocess.run(["cp", str(output_html), str(web_root / "index.html")], check=True)
-    subprocess.run(["cp", str(output_csv), str(web_root / "publications.csv")], check=True)
+    shutil.copy(output_html, web_root / "index.html")
+    shutil.copy(output_csv, web_root / "publications.csv")
 
-    print("✅ Deployment complete.")
-    print("🌐 Visit https://publication.renew-platforms.dk to view the results.")
+    print("✅ Pipeline complete.")
+    print("🌐 View live at: https://publication.renew-platforms.dk")
 
 if __name__ == "__main__":
     main()
