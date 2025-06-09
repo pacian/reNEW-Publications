@@ -9,6 +9,7 @@ def generate_html():
     with open("output/publications.json", encoding="utf-8") as f:
         data = json.load(f)
 
+    # Check for skipped entries
     skipped_count = 0
     if os.path.exists("output/skipped_entries.json"):
         with open("output/skipped_entries.json", encoding="utf-8") as f:
@@ -65,8 +66,6 @@ def generate_html():
         footer { text-align: center; padding: 2em; color: #666; font-size: 0.9em; }
         .match-count { margin: 1em 0; font-weight: bold; }
         .theme-toggle { position: absolute; top: 1.5em; right: 1.5em; padding: 0.4em 0.8em; color: var(--button-text); border: 1px solid #ccc; background-color: var(--input-bg); }
-        .csv-download { display: inline-block; padding: 0.5em 1em; background-color: #007BFF; color: #fff; text-decoration: none; border-radius: 4px; margin-bottom: 1em; }
-        .csv-download:hover { background-color: #0056b3; }
         @media (max-width: 768px) {
           header h1 { font-size: 1.4em; }
           .container { padding: 1em; }
@@ -147,8 +146,6 @@ def generate_html():
         <div class="source-note">
           <strong>Data source: EuropePMC | Filter: reNEW – CPH / UCPH / University of Copenhagen / DanStem</strong>
         </div>
-
-        <a href="/publications.csv" class="csv-download" download>📥 Download CSV</a>
 
         {% if skipped_count > 0 %}
         <div class="warning">

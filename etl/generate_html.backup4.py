@@ -9,6 +9,7 @@ def generate_html():
     with open("output/publications.json", encoding="utf-8") as f:
         data = json.load(f)
 
+    # Check for skipped entries
     skipped_count = 0
     if os.path.exists("output/skipped_entries.json"):
         with open("output/skipped_entries.json", encoding="utf-8") as f:
@@ -50,7 +51,6 @@ def generate_html():
           --bg: #ffffff;
           --text: #052d4f;
           --input-bg: #ffffff;
-          --button-text: #000000;
         }
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: var(--text); }
         header { background-color: #000; color: #fff; padding: 2em; text-align: center; position: relative; }
@@ -64,9 +64,7 @@ def generate_html():
         th { background-color: #f0f0f0; }
         footer { text-align: center; padding: 2em; color: #666; font-size: 0.9em; }
         .match-count { margin: 1em 0; font-weight: bold; }
-        .theme-toggle { position: absolute; top: 1.5em; right: 1.5em; padding: 0.4em 0.8em; color: var(--button-text); border: 1px solid #ccc; background-color: var(--input-bg); }
-        .csv-download { display: inline-block; padding: 0.5em 1em; background-color: #007BFF; color: #fff; text-decoration: none; border-radius: 4px; margin-bottom: 1em; }
-        .csv-download:hover { background-color: #0056b3; }
+        .theme-toggle { position: absolute; top: 1.5em; right: 1.5em; padding: 0.4em 0.8em; }
         @media (max-width: 768px) {
           header h1 { font-size: 1.4em; }
           .container { padding: 1em; }
@@ -102,7 +100,6 @@ def generate_html():
           html.style.setProperty('--bg', isDark ? '#ffffff' : '#121212');
           html.style.setProperty('--text', isDark ? '#052d4f' : '#dddddd');
           html.style.setProperty('--input-bg', isDark ? '#ffffff' : '#333333');
-          html.style.setProperty('--button-text', isDark ? '#000000' : '#ffffff');
         }
 
         function filterAll() {
@@ -147,8 +144,6 @@ def generate_html():
         <div class="source-note">
           <strong>Data source: EuropePMC | Filter: reNEW – CPH / UCPH / University of Copenhagen / DanStem</strong>
         </div>
-
-        <a href="/publications.csv" class="csv-download" download>📥 Download CSV</a>
 
         {% if skipped_count > 0 %}
         <div class="warning">
