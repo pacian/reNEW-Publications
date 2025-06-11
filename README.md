@@ -1,4 +1,5 @@
 # reNEW Publications Registry – Copenhagen Node
+---
 
 This project harvests publications for the **Novo Nordisk Foundation Center for Stem Cell Medicine – reNEW Copenhagen**, formats them into a human-readable HTML publication viewer, and supports multi-source data curation (EuropePMC, Excel).
 
@@ -13,6 +14,29 @@ This project harvests publications for the **Novo Nordisk Foundation Center for 
 * Backup scripts and outputs for safety
 * Markdown-friendly output for downstream integration
 * Netdata monitoring integration at `/netdata` with optional authentication
+
+
+| Category          | Feature Description                                           |          |                |
+| ----------------- | ------------------------------------------------------------- | -------- | -------------- |
+| Header & Branding | Logo (2x size) and Title                                      |          |                |
+| Display           | Responsive layout, modern typography, bold Authors and Titles |          |                |
+| Theme             | Toggle between light and dark mode                            |          |                |
+| Filters           | Year, Source, Journal                                         |          |                |
+| Reset Button      | Clears all filters                                            |          |                |
+| Match Count       | Displays "Showing X of Y results"                             |          |                |
+| Toggle Columns    | Show/hide: Authors, Title, Journal, Pub Date, DOI, Source     |          |                |
+| CSV Download      | Available at top of page                                      |          |                |
+| Data Source       | Footer note: “EuropePMC                                       | OpenAlex | CURIS (Excel)” |
+| Skipped Warning   | Displays number of entries skipped due to missing metadata    |          |                |
+
+
+| Mode     | Description                                                           |
+| -------- | --------------------------------------------------------------------- |
+| Option A | Field-specific dropdown: Search in Title, Authors, Journal, DOI, etc. |
+| Option B | Per-column inline filters (below each column header)                  |
+| Option C | Advanced search syntax: `title:"stem cell" author:"Smith"`            |
+| Basic    | Keyword search across all fields                                      |
+
 
 ---
 
