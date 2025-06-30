@@ -5,7 +5,7 @@ This project harvests publications for the **Novo Nordisk Foundation Center for 
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 * Multi-source publication harvesting (EuropePMC + Excel + OpenAlex)
 * Responsive HTML output with year filtering and keyword search
@@ -40,7 +40,7 @@ This project harvests publications for the **Novo Nordisk Foundation Center for 
 
 ---
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 renew-publications/
@@ -66,7 +66,7 @@ renew-publications/
 
 ---
 
-## 📌 Usage Instructions
+## Usage Instructions
 
 ```bash
 # Clone the repository
@@ -96,7 +96,7 @@ sudo cp output/publications.csv /var/www/renew-publications/publications.csv
 
 ---
 
-## 🔐 Monitoring (Optional)
+## Monitoring (Optional)
 
 Netdata is served at [https://publication.renew-platforms.dk/netdata](https://publication.renew-platforms.dk/netdata). Access may be protected with a username and password defined in `/etc/nginx/.htpasswd`.
 
