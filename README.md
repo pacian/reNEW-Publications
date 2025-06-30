@@ -98,7 +98,7 @@ sudo cp output/publications.csv /var/www/renew-publications/publications.csv
 
 ## Monitoring (Optional)
 
-Netdata is served at [https://publication.renew-platforms.dk/netdata](https://publication.renew-platforms.dk/netdata). Access may be protected with a username and password defined in `/etc/nginx/.htpasswd`.
+Netdata is served at [https://publication.renew-platforms.dk/netdata](https://publication.renew-platforms.dk/netdata). Access is protected with a username and password defined in `/etc/nginx/.htpasswd`.
 
 ---
 
